@@ -1,0 +1,25 @@
+Detailed expectations:
+
+§  Create a from-scratch calculator app in a new GitHub repository
+
+§  Use React for the front-end
+
+§  You can make it look however you want.
+
+§  Minimum functionality will include addition, subtraction, 
+multiplication, division, equals, and memory storage (MS) & retrieval (MR)
+
+§  Manage the application state and its transitions with Redux
+
+§  Write unit tests to assert intended behavior using Jest
+
+§  Upon completion, give us access to the GitHub repository so we can clone it; 
+doing so is probably easiest if you make the repo public. Ultimately, we should 
+be able to clone your repo locally then run npm start to use the app or npm test 
+to run the unit tests.
+
+§  Browser compatibility requirements: latest Chrsome, IE11, latest Firefox
+
+
+Feel free to add any additional features as long as you make it clear that you're doing so. 
+We're looking forward to seeing what you come up with. Good luck!
