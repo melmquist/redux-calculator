@@ -1,0 +1,100 @@
+.greenBorder {
+    border: solid 1px green
+}
+/* BABBEL COLOR -> fd8d2c */
+
+.root {
+    width: 50vw;
+    height: 100vh;
+    margin: auto;
+}
+
+
+.containerDiv {
+    border: solid 1px #797979;    
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 25px;
+}
+
+
+.headerDiv {
+    padding-bottom: 10px;
+}
+
+.headerImg {
+    width: 25%;
+    display: block;
+    margin: auto;
+}
+
+.headerText {
+    font-family: 'Roboto', sans-serif;    
+    width: 70%;
+    margin: auto;
+    text-align: center;
+}
+
+.inputOutputDiv {
+    border: solid 1px #797979;    
+    height: 50px;
+    width: 100%;
+}
+
+.resultDiv {
+
+}
+
+.evalQueueDiv {
+
+}
+
+.inputValuesDiv {
+
+}
+
+
+
+.storageDiv {
+    /* border: solid 1px #797979;     */
+    width: 100%;
+}
+
+.storageBtn {
+    width: 50%;
+    display: inline-block;
+}
+
+.numbersDiv {
+    /* border: solid 1px #797979; */
+    width: 75%;
+    height: 100%;
+    display: inline-block;    
+    vertical-align:top;
+}
+
+.numbersDivRow {
+    width: 100%;
+}
+
+.numbersDivButton {
+    width: 33.333%;
+    display: inline-block;
+    
+}
+
+.operatorsDiv {
+    /* border: solid 1px #797979;     */
+    display: inline-block;
+    width: 25%;
+    height: 100%;
+    vertical-align:top;
+}
+
+.operatorsDivRow {
+    width: 100%;
+}
+
+.equalsDiv {
+    width: 100%;    
+}

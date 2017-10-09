@@ -1,22 +1,46 @@
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 var config = {
-    entry: './main.js', // entry point
+    entry: './src/main.js', 
     output: {
-        filename: 'index.js', // place where bundled app will be served
+        filename: 'index.js', 
     },
     devServer: {
-        inline: true, // autorefresh
-        port: 8080 // development port server
+        inline: true, 
+        port: 8080 
     },
     module: {
         loaders: [
             {
-                test: /\.jsx?$/, // search for js files 
+                test: /\.jsx?$/, 
                 exclude: /node_modules/,
                 loader: 'babel-loader',
                 query: {
-                    presets: ['es2015', 'react'] // use es2015 and react
+                    presets: ['es2015', 'react'] 
                 }
-            }
+            },
+            {
+                test: /\.css$/,
+                loader: 'style-loader'
+            }, 
+            {
+                test: /\.css$/,
+                loader: 'css-loader',
+                query: {
+                    modules: true,
+                    localIdentName: '[name]__[local]___[hash:base64:5]'
+                }
+            },
+            {
+                test: /\.(png|jpg|gif)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {}  
+                    }
+                ]
+              }
+            
         ]
     }
 }
