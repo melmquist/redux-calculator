@@ -3,8 +3,8 @@
 ## TO VIEW THIS PROJECT
 1. `git clone `
 2. `npm install`
-3. `npm start `
-4. `npm test`
+3. `npm start ` and navigate browser to `http://localhost:8080/`
+4. `npm test` and view in console
 
 
 ## SUMMARY: 

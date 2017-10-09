@@ -41,28 +41,3 @@ export function resultReducer(state = "", action) {
 
 
 
-/*---------- DISPATCHERS ----------*/
-
-// export function addItemToEvalQueue(item) {
-
-//     return (dispatch) => {
-//         dispatch(addItemToEvalQueueAction(item))
-//     }
-// }
-
-// export function computeResult(arrayOrString) {
-
-// }
-
-
-/*
-when we hit EQUALS, we want to 
-1) validate that the last input wasn't an operator
-2) grab all items from evalQueue, join them to one string, execute that evaluation
-3) dispatch action SET RESULT 
-
-so why dont we do the computation and validation of the input queue in the reducer file,
-then when that's done, we dispatch from there
-and then reset the evalQueue to be the result!!!! (dont forget)
-
-*/

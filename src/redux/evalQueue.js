@@ -11,7 +11,6 @@ export const EXECUTE_EVAL_QUEUE = "EXECUTE_EVAL_QUEUE"
 /*---------- ACTION CREATORS ----------*/
 
 export function addItemToEvalQueueAction(item) {
-    console.log("addItemToEvalQueueAction CALLED with item: ", item)
     return {
         type: ADD_ITEM_TO_EVAL_QUEUE,
         item
@@ -19,7 +18,6 @@ export function addItemToEvalQueueAction(item) {
 }
 
 export function resetLastItemOnEvalQueueAction(item) {
-    console.log("RESETLastItemOnEvalQueueAction CALLED with item: ", item)
     return {
         type: RESET_LAST_ITEM_ON_EVAL_QUEUE,
         item
@@ -27,15 +25,12 @@ export function resetLastItemOnEvalQueueAction(item) {
 }
 
 export function clearEvalQueueAction() {
-    console.log("CLEAREvalQueueAction CALLED")    
-    
     return {
         type: CLEAR_EVAL_QUEUE
     }
 }
 
 export function executeEvalQueueAction(toBeEvaluated) {
-    console.log("EXECUTEEvalQueueAction CALLED")    
     return {
         type: EXECUTE_EVAL_QUEUE,
         toBeEvaluated

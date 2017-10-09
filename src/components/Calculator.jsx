@@ -99,7 +99,7 @@ export default class Calculator extends React.Component {
                 this.props.onSaveToStorageAction(resultToTake)
             }
             else {
-                console.log("NO RESULT")
+                // console.log("NO RESULT")
             }
             this.props.onClearEvalQueue();      
             this.props.onClearResult();
@@ -114,7 +114,7 @@ export default class Calculator extends React.Component {
                 this.clearValues();
                 this.props.onAddItemToQueue(storageToRetreive);
             } else {
-                console.log("NO RESULT")
+                // console.log("NO RESULT")
             }
         }
     }

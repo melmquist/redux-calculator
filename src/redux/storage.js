@@ -7,7 +7,6 @@ const RETREIVE_FROM_STORAGE = "RETREIVE_FROM_STORAGE"
 /*---------- ACTION CREATORS ----------*/
 
 export function saveToStorageAction(storageVal) {
-    console.log("saveToStorageAction CALLED with STORAGE VAL -", storageVal)
     return {
         type: SAVE_TO_STORAGE,
         storageVal
@@ -36,19 +35,6 @@ export function storageReducer(state = "", action) {
             return state;
     }
 }
-
-
-
-/*---------- DISPATCHERS ----------*/
-
-// export function addItemToEvalQueue(item) {
-
-//     return (dispatch) => {
-//         dispatch(addItemToEvalQueueAction(item))
-//     }
-// }
-
-
 
 
 
