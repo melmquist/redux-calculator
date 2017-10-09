@@ -23,3 +23,40 @@ to run the unit tests.
 
 Feel free to add any additional features as long as you make it clear that you're doing so. 
 We're looking forward to seeing what you come up with. Good luck!
+
+
+
+
+
+after RETREUVE puts val on eVALQUEUE, if a user adds a number, it should reset the 
+evalQueue to that input number, and not just start prepending
+    --> IF USER CLICKS NUMBER, CHECK LAST INPUT ON EVAL QUEUE length-1, if that is a number reset
+
+if user is adding numbers, THEN CLICKS AN OPERATOR, THAT SHOULD AUTOMATICALLY PUSH THE 
+VAL to the evalQueue 
+
+
+-------
+ELIMINATE THE VALUES DISPLAY
+every time you add a number to value, push to eval queue but reset the last 
+item there with the new one you have
+
+
+
+
+
+ON OPERATOR HIT, (AFTER MEMORY RETREIVE)
+values empty, 
+EvalQueue filled with RETREIVE
+IT RESETS THE EVALQUEUE WITH JUST THE OPERATOR AND DELETES THE RETREIVE on EQ
+
+
+
+SUMMARY: 
+
+input values get registered, evaluated and displayed using a cobination of 3 elements:
+1) this.state.values (array on component level)
+2) this.props.evalQueue (array on redux store with methods/access through container)
+3) this.props.result (string on redux store with methods/access through container)
+
+The Calculator component takes button inputs and categorizes them based on their IDs

@@ -15,8 +15,14 @@ export default class Calculator extends React.Component {
         }
 
         this.handleButtonClick = this.handleButtonClick.bind(this);
+        this.clearValues = this.clearValues.bind(this);
     }
 
+    clearValues() {
+        this.setState({
+            values: []
+        })
+    }
 
     handleButtonClick(e) {
         let numbers = '1234567890.'.split('');
@@ -29,7 +35,7 @@ export default class Calculator extends React.Component {
 
         // IF NUMBER BUTTON PRESSED, PUSH TO COMPONENT STATE "VALUES"
         if (numbers.indexOf(newVal) > -1) {
-            console.log("PROPS CHECK", this.props)
+            // console.log("PROPS CHECK", this.props)
             // if we have result, then call BOTH CLEARS, then proceed to below
             if(this.props.result) {
                 console.log("YES RESULT")
@@ -41,6 +47,7 @@ export default class Calculator extends React.Component {
             this.setState({ 
                 values: arrCopy 
             })
+            // this.props.onResetLastItemOnEvalQueue(this.state.values)
         }
 
         // IF OPERATOR BUTTON PRESSED, JOIN ALL VALUES FROM COMPONENT STATE (so that 
@@ -61,13 +68,48 @@ export default class Calculator extends React.Component {
                 // check if last entered item was an operator, and if so, replace it not just append it with new operator
                 console.log("EVAL QUEUE", this.props.evalQueue)
                 let lastItemInEvalQueue = this.props.evalQueue[this.props.evalQueue.length-1]
+                console.log("*****lastItemInEvalQueue", lastItemInEvalQueue)
+
                 if(operators.indexOf(lastItemInEvalQueue) > -1) {
+                    console.log("BOOM 1")
+
                     this.props.onResetLastItemOnEvalQueue(newVal);
-                } else {
+
+
+                } else if(/[0-9]/.test(lastItemInEvalQueue)) {
+                    console.log("LAST ITEM WAS A NUMBER< TIME TO RESET")
+                    // this.props.onClearEvalQueue();
                     let joinedValuesToOneNumber = this.state.values.join('');
-                    this.props.onAddItemToQueue(joinedValuesToOneNumber)
+                    this.props.onResetLastItemOnEvalQueue(joinedValuesToOneNumber)
                     this.props.onAddItemToQueue(newVal)
-                    this.setState({ values: [] })
+                    this.clearValues();
+                } else {
+                    console.log("BOOM 2 VALS", this.state.values.length)
+
+                    // let joinedValuesToOneNumber = this.state.values.join('');
+
+                    let joinedValuesToOneNumber; 
+                    if (this.state.values.length === 0) {                         // PREPEND A "0" TO THIS.STATE.VALUES IF IT'S EMPTY AND OPERATOR IS HIT
+                        console.log("BOOBOOBSOBOFOB")
+                        // this.setState({ values: ["0"] });
+                        // joinedValuesToOneNumber = this.state.values.join('');
+                        // console.log("BOOM joinedValuesToOneNumber", joinedValuesToOneNumber)
+
+                        this.props.onAddItemToQueue("0")
+                        this.props.onAddItemToQueue(newVal)
+                        this.setState({ values: [] })
+                    } else {
+                        console.log("NAAAAAAAA")
+                        console.log("NAAAAAAAA")
+                        joinedValuesToOneNumber = this.state.values.join('');
+                        this.props.onAddItemToQueue(joinedValuesToOneNumber)
+                        this.props.onAddItemToQueue(newVal)
+                        this.setState({ values: [] })
+                    }
+                    // console.log("BOOM joinedValuesToOneNumber", joinedValuesToOneNumber)
+                    // this.props.onAddItemToQueue(joinedValuesToOneNumber)
+                    // this.props.onAddItemToQueue(newVal)
+                    // this.setState({ values: [] })
                 }
             }            
             // arrCopy.push(newVal)
@@ -87,6 +129,7 @@ export default class Calculator extends React.Component {
                 values: [],
             })
             this.props.onExecuteEvalQueue();
+            this.props.onClearEvalQueue();
         }
         if(newVal === "AC") {
             console.log("AC HIT")
@@ -99,19 +142,49 @@ export default class Calculator extends React.Component {
         }
         if(newVal === "STORE") {
             // console.log("STORE HIT")
-            if(this.props.result) {
-                console.log("YES RESULT")
-                let resultToStore = this.props.result
-                this.props.onSaveToStorageAction(resultToStore)
-            } else {
+            /*
+            if there is a result and EQ, take the result
+            if there is no result and yes EQ, take the EQ
+            CLEAR THE VALS/EQ/RESULT
+            */ 
+            if(this.props.result && !this.props.evalQueue) {
+                console.log("YES RESULT, NO EQ")
+                // if there is a result and no EQ, take the result
+               
+                this.props.onSaveToStorageAction(this.props.result)
+            } else if(this.props.result && this.props.evalQueue) {
+                console.log("YES RESULT, YES EQ")
+                // TAKE RESULT
+                this.props.onSaveToStorageAction(this.props.result)
+
+            } else if(!this.props.result && this.props.evalQueue.length > 0) {
+                console.log("NO RESULT, YES EQ")
+                // TAKE EQ
+                console.log("EQ TO TAKE>>>>>>", this.props.evalQueue)
+                let resultToTake = this.props.evalQueue[this.props.evalQueue.length - 2]
+                this.props.onSaveToStorageAction(resultToTake)
+
+            } else if(!this.props.result && this.props.evalQueue.length === 0) {
+                console.log("NO R, NO EQ")
+                let resultToTake = this.state.values.join('')
+                this.props.onSaveToStorageAction(resultToTake)
+            }
+            else {
                 console.log("NO RESULT")
             }
+            // ALWAYS RESET
+            this.props.onClearEvalQueue();
+            this.props.onClearResult();
+            this.clearValues();
         }
         if(newVal === "RETREIVE") {
             if(this.props.storage) {
                 console.log("YES RESULT")
                 let storageToRetreive = this.props.storage;
                 this.props.onRetreiveFromStorageAction();
+                this.props.onClearEvalQueue();
+                this.props.onClearResult();
+                this.clearValues();
                 this.props.onAddItemToQueue(storageToRetreive);
             } else {
                 console.log("NO RESULT")
@@ -123,15 +196,15 @@ export default class Calculator extends React.Component {
 
 
     render() {
-        // console.log("STATE: ", this.state)
-        // console.log("PROPS: ", this.props)
+        console.log("STATE: ", this.state)
+        console.log("PROPS: ", this.props)
         return (
             <div className={styles.containerDiv}>
                 
                 <div className={styles.headerDiv}>
                     <img className={styles.headerImg} src={babbelLogo} alt="babbelLogo"/>
                     <div className={styles.headerText}>
-                        Babbel Coding Challenge Calculator
+                        Coding Challenge Calculator
                     </div>
                 </div>
 
@@ -226,3 +299,9 @@ export default class Calculator extends React.Component {
         );
     }
 }
+
+/*
+
+
+
+*/
