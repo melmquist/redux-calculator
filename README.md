@@ -1,5 +1,12 @@
 # redux-calculator
 
+## TO VIEW THIS PROJECT
+1. `git clone `
+2. `npm install`
+3. `npm start `
+4. `npm test`
+
+
 ## SUMMARY: 
 
 The input values get registered, evaluated and displayed using a cobination of 3 elements:
@@ -23,3 +30,4 @@ The input values get registered, evaluated and displayed using a cobination of 3
 ⋅⋅2 Maybe make an external module with helper functions so that 
 - Create a custom `<Button />` component and utilize `Array.Prototype.Map` to dynamically create all the buttons and pass down ID's so that the Component code can be a little more DRY
 - UI testing with Nightmare or similar library to test something along the lines of "if user clicks buttons ("1", "2", "+", "1", "0", "="), then result on Redux store is set to 22" 
+- Better CSS styleing and overall UI refinements
