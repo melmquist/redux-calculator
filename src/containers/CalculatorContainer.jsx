@@ -23,7 +23,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onAddItemToQueue: (item) => dispatch(addItemToEvalQueueAction(item)),
-        // onExecuteEvalQueue: () => dispatch(executeEvalQueueAction()),
         onExecuteEvalQueue: () => dispatch(executeEvalQueueDispatcher()),
         onClearEvalQueue: () => dispatch(clearEvalQueueAction()),
         onClearResult: () => dispatch(clearResultAction()),

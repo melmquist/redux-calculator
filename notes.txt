@@ -45,18 +45,13 @@ item there with the new one you have
 
 
 
-ON OPERATOR HIT, (AFTER MEMORY RETREIVE)
-values empty, 
-EvalQueue filled with RETREIVE
-IT RESETS THE EVALQUEUE WITH JUST THE OPERATOR AND DELETES THE RETREIVE on EQ
+AFTER RETREIVE
+EQ IS retreive val 
+IF WE PRESS OPERATOR, it resets the last item on eq with ""
 
 
 
-SUMMARY: 
 
-input values get registered, evaluated and displayed using a cobination of 3 elements:
-1) this.state.values (array on component level)
-2) this.props.evalQueue (array on redux store with methods/access through container)
-3) this.props.result (string on redux store with methods/access through container)
 
-The Calculator component takes button inputs and categorizes them based on their IDs
+
+

@@ -72,13 +72,6 @@ export function evalQueueReducer(state = [], action) {
 
 /*---------- DISPATCHERS ----------*/
 
-// export function addItemToEvalQueue(item) {
-
-//     return (dispatch) => {
-//         dispatch(addItemToEvalQueueAction(item))
-//     }
-// }
-
 
 // I AM SURE THAT THIS IS AN INCORRECT IMPLEMENTATION OF REDUX-THUNK BUT THE REASON I AM
 // USING IT IS SO THAT I CAN GRAB ONE PART OF STATE (evalQueue) AND THEN UTILIZE THUNK 
@@ -86,15 +79,10 @@ export function evalQueueReducer(state = [], action) {
 // STORE.SUBSCRIBE?? EITHER WAY, I KNOW REDUX THUNK IS FOR ASYNC AND THESE OPERATIONS
 // CAN AND SHOULD ALL BE SYNCHRONOUS.
 export function executeEvalQueueDispatcher() {
-    console.log("DISPATCHER CALLED")
-    // console.log("GET", getState())
     return (dispatch, getState) => {
-        // console.log("GET STATE: ", getState())
         let valuesToExecute = getState().evalQueue.join('')
-        // console.log("EVAL", eval(valuesToExecute));
         let result = eval(valuesToExecute)
         dispatch(setResultAction(result))
-        // dispatch(executeEvalQueueAction(valuesToExecute))
     }
 }
 
