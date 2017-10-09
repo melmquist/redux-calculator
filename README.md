@@ -26,8 +26,8 @@ The input values get registered, evaluated and displayed using a cobination of 3
 
 ### Possible Optimazations if time was no object: 
 - Separate the input categorization logic outside of the Calculator component
-⋅⋅1. The component seems bloated with a lot of logic/computation and my design choices on how to construct the Redux store meant that I had to do a lot of control flow if/then's. Upon a major refactor, I might consider adding more to the Redux store to keep things more intuitive
-⋅⋅2. Maybe take most of the functions on the Calculator component and make an external module so that the component stays more lightweight.
+⋅⋅* The component seems bloated with a lot of logic/computation and my design choices on how to construct the Redux store meant that I had to do a lot of control flow if/then's. Upon a major refactor, I might consider adding more to the Redux store to keep things more intuitive
+⋅⋅* Maybe take most of the functions on the Calculator component and make an external module so that the component stays more lightweight.
 - Create a custom `<Button />` component and utilize `Array.Prototype.Map` to dynamically create all the buttons and pass down ID's so that the Component code can be a little more DRY
 - UI testing with Nightmare or similar library to test something along the lines of "if user clicks buttons ("1", "2", "+", "1", "0", "="), then result on Redux store is set to 22" 
 - Better CSS styleing and overall UI refinements
